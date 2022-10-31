@@ -36,17 +36,18 @@ dependencies {
     implementation 'com.github.omicronapps:7-Zip-JBinding-4Android:Release-16.02-2.02'
 }
 ```
-3. Sync project
-4. SevenZip should now be possible to use by importing `net.sf.sevenzipjbinding.SevenZip`
+3. همگام سازی پروژه
+ 4. SevenZip اکنون باید با وارد کردن «net.sf.sevenzipjbinding.SevenZip» امکان پذیر باشد.
 
-## Examples
-Examples of opening an existing archive, along with listing and extracting the contents are provided below.
+ ## مثال ها
+ نمونه هایی از باز کردن بایگانی موجود، همراه با فهرست کردن و استخراج مطالب در زیر ارائه شده است.
 
-Note that the `SevenZip` class provides static access and need not be instantiated. In addition, the native library will be automatically by calling any of the `openInArchive()` variants or `getSevenZipVersion()`.
+ توجه داشته باشید که کلاس `SevenZip` دسترسی ایستا را فراهم می کند و نیازی به نمونه سازی نیست.  علاوه بر این، کتابخانه بومی به طور خودکار با فراخوانی هر یک از انواع «openInArchive()» یا «getSevenZipVersion()» خواهد بود.
 
-### Listing versions
-7-zip and 7-Zip-JBinding versions can be retrieved as follows. Note that calling `getSevenZipVersion()` will result in the native library being loaded, following which `isInitializedSuccessfully()` should return `true` if successful.
-```
+ ### نسخه های فهرست شده
+ نسخه های 7-zip و 7-Zip-JBinding به شرح زیر قابل بازیابی هستند.  توجه داشته باشید که فراخوانی «getSevenZipVersion()» منجر به بارگیری کتابخانه بومی می‌شود و پس از آن، «isInitializedSuccessfully()» باید «true» را در صورت موفقیت برگرداند.
+
+```java
 import android.util.Log;
 
 import net.sf.sevenzipjbinding.SevenZip;
@@ -63,9 +64,10 @@ public class TestVersion {
 }
 ```
 
-### Listing archive contents
-Open an existing archive with `openInArchive()`, providing an `IInStream` instance for access to the file archive, and an `IArchiveOpenCallback` instance for archive open status callbacks. Here `openInArchive()` will return an `IInArchive` instance through which the archive can be queried.
-```
+### فهرست مطالب آرشیو
+ یک بایگانی موجود را با «openInArchive()» باز کنید، یک نمونه «IInStream» برای دسترسی به بایگانی فایل، و یک نمونه «IAarchiveOpenCallback» برای بایگانی بازخوانی‌های وضعیت باز.  در اینجا «openInArchive()» یک نمونه «IInArchive» را برمی‌گرداند که از طریق آن می‌توان بایگانی را جستجو کرد.
+
+```java
 import android.util.Log;
 
 import net.sf.sevenzipjbinding.ArchiveFormat;
@@ -125,9 +127,12 @@ public class TestList {
 }
 ```
 
-### File extraction, standard interface
-Files can be extracted through `IInArchive.extract()` method. This requires providing an `IArchiveExtractCallback` implementation in order to receive status callbacks and for providing an `ISequentialOutStream` instance. Here the `ISequentialOutStream` will receive the extracted data through `write()` callbacks.
-```
+### استخراج فایل، رابط استاندارد
+ فایل ها را می توان از طریق روش «IInArchive.extract()» استخراج کرد.  این امر مستلزم ارائه یک پیاده‌سازی «IAArchiveExtractCallback» به منظور دریافت تماس‌های وضعیت و ارائه یک نمونه «ISequentialOutStream» است.  در اینجا «ISequentialOutStream» داده‌های استخراج‌شده را از طریق تماس‌های «write()» دریافت می‌کند.
+
+```java
+
+
 import android.util.Log;
 
 import net.sf.sevenzipjbinding.ArchiveFormat;
@@ -228,9 +233,10 @@ public class TestExtract {
 }
 ```
 
-### Slow extraction, standard interface
-Alternatively, the slow extraction interface can be used through `IInArchive.extractSlow()`, which however requires accessing each file individually.
-```
+### استخراج آهسته، رابط استاندارد
+ از طرف دیگر، رابط استخراج کند را می توان از طریق «IInArchive.extractSlow()» استفاده کرد، که با این حال نیاز به دسترسی به هر فایل جداگانه دارد.
+
+```java
 import android.util.Log;
 
 import net.sf.sevenzipjbinding.ArchiveFormat;
@@ -302,44 +308,49 @@ public class TestSlowExtract {
 }
 ```
 
-## Release Notes
-Main features of 16.02-2.02 (Release, cross-platform, based on zip/p7zip 16.02)
-* Bugfix #5 RandomAccessFileOutStream should implement Closeable
-  - (https://github.com/borisbrodski/sevenzipjbinding/issues/5)
+## یادداشت های انتشار
+ ویژگی های اصلی 16.02-2.02 (انتشار، کراس پلتفرم، بر اساس zip/p7zip 16.02)
+ * رفع اشکال شماره 5 RandomAccessFileOutStream باید Closeable را پیاده سازی کند
+   - (https://github.com/borisbrodski/sevenzipjbinding/issues/5)
 
-Main features of 16.02-2.01 (Release, extraction/compression/update, cross-platform, based on zip/p7zip 16.02)
-* Bind 7-Zip 16.02, In-memory archive extraction/creation/update
-* Extraction of
-  - 7z, Arj, BZip2, Cab, Chm, Cpio, Ar/A/Lib/Deb, Fat, GZip, HFS, Iso,
-    Lzh, Lzma, Nsis, Ntfs, Rar, Rpm, Split, Tar, Udf, Wim, Xar, Z, Zip
-  - Archive format auto detection
-  - Support for password protected and in volumes splitted archives
-  - Full featured and simplified extraction interfaces
-* Compression & update of
-  - 7z, Zip, Tar, GZip, BZip2
-  - Convenient archive format specific and generic compression APIs
-  - Password protected archives (7z, zip) with encrypted archive headers (7z only)
-* JavaDoc + Snippets (see documentation on the web: sevenzipjbind.sf.net)
-* Over 8599 JUnit tests:
-  - Initialization
-  - All extraction methods
-  - Compression
-  - Unicode support
+ ویژگی های اصلی 16.02-2.01 (انتشار، استخراج/فشرده سازی/به روز رسانی، کراس پلتفرم، بر اساس zip/p7zip 16.02)
+ * Bind 7-Zip 16.02، استخراج/ایجاد/به روز رسانی بایگانی در حافظه
+ * استخراج از
+   - 7z، Arj، BZip2، Cab، Chm، Cpio، Ar/A/Lib/Deb، Fat، GZip، HFS، Iso،
+     Lzh، Lzma، Nsis، Ntfs، Rar، RPM، Split، Tar، Udf، Wim، Xar، Z، Zip
+   - تشخیص خودکار فرمت آرشیو
+   - پشتیبانی از رمز عبور محافظت شده و در حجم آرشیو تقسیم شده است
+   - رابط های استخراج کامل و ساده شده
+ * فشرده سازی و به روز رسانی
+   - 7z، Zip، Tar، GZip، BZip2
+   - فرمت آرشیو مناسب APIهای فشرده سازی خاص و عمومی
+   - آرشیوهای محافظت شده با رمز عبور (7z، zip) با هدرهای آرشیو رمزگذاری شده (فقط 7z)
+ * JavaDoc + Snippets (به مستندات در وب مراجعه کنید: sevenzipjbind.sf.net)
+ * بیش از 8599 تست JUnit:
+   - مقداردهی اولیه
+   - کلیه روش های استخراج
+   - فشرده سازی
+   - پشتیبانی از یونیکد
 
-Main features of 9.20-2.00beta (Release candidate, extraction/compression/update, cross-platform, based on zip/p7zip 9.20)
-* Extraction of
-  - 7z, Arj, BZip2, Cab, Chm, Cpio, Deb, GZip, HFS, Iso, Lzh,
-    Lzma, Nsis, Rar, Rpm, Split, Tar, Udf, Wim, Xar, Z, Zip
-  - Archive format auto detection
-  - Support for password protected and volumed archives
-  - Simple extraction interface
-* Compression & update of
-  - 7z, Zip, Tar, GZip, BZip2
-  - Archive format specific or generic compression API
-* JavaDoc + Snippets (see documentation on the web: [sevenzipjbind.sf.net](http://sevenzipjbind.sf.net))
-* 6766 JUnit tests:
-  - 7z, Zip, Tar, Rar, Lzma, Iso, GZip, Cpio, BZIP2,
-    Z, Arj, Lzh, Cab, Chm, Nsis, DEB, RPM, UDF
+ ویژگی های اصلی نسخه 9.20-2.00 بتا (نامزد انتشار، استخراج/فشرده سازی/به روز رسانی، کراس پلتفرم، بر اساس zip/p7zip 9.20)
+ * استخراج از
+   - 7z، Arj، BZip2، Cab، Chm، Cpio، Deb، GZip، HFS، Iso، Lzh،
+     Lzma، Nsis، Rar، RPM، Split، Tar، Udf، Wim، Xar، Z، Zip
+   - تشخیص خودکار فرمت آرشیو
+   - پشتیبانی از آرشیوهای محافظت شده با رمز عبور و حجم
+   - رابط استخراج ساده
+ * فشرده سازی و به روز رسانی
+   - 7z، Zip، Tar، GZip، BZip2
+   - API فشرده سازی خاص یا عمومی با فرمت آرشیو
+ * JavaDoc + Snippets (به مستندات موجود در وب مراجعه کنید: [sevenzipjbind.sf.net](http://sevenzipjbind.sf.net))
+ * 6766 تست JUnit:
+   - 7z، Zip، Tar، Rar، Lzma، Iso، GZip، Cpio، BZIP2،
+     Z، Arj، Lzh، کابین، Chm، Nsis، DEB، RPM، UDF
 
-## License
-[GNU Library or Lesser General Public License version 2.1 (LGPLv2)](LICENSE)
+ ## مجوز
+ [کتابخانه گنو یا مجوز عمومی عمومی کمتر نسخه 2.1 (LGPLv2)] (LICENSE)
+
+
+##ترجمه
+
+- ترجمه شده توسط نینجا رمزگشا
