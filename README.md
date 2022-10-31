@@ -1,28 +1,28 @@
 # 7-Zip-JBinding-4Android
-> Android Java wrapper for 7z archiver engine
+ > بسته بندی جاوا اندروید برای موتور بایگانی 7z
 
-## Summary
-Android library version of [7-Zip-JBinding](http://sevenzipjbind.sourceforge.net/) java wrapper.
+ ## خلاصه
+ نسخه کتابخانه اندروید [7-Zip-JBinding](http://sevenzipjbind.sourceforge.net/) java wrapper.
 
-Native (JNI) cross-platform library to extract (password protected, multi-part) 7z Arj BZip2 Cab Chm Cpio Deb GZip HFS Iso Lzh Lzma Nsis Rar Rpm Split Tar Udf Wim Xar Z Zip archives and create 7z, Zip, Tar, GZip & BZip2 from Java on Android.
+ کتابخانه متقابل پلت فرم بومی (JNI) برای استخراج (محافظت از رمز عبور، چند قسمتی) 7z Arj BZip2 Cab Chm Cpio Deb GZip HFS Iso Lzh Lzma Nsis Rar Rpm Split Tar Udf Wim Xar Z Zip بایگانی و ایجاد 7z، Zip، Tar، GZip  & BZip2 از جاوا در اندروید.
 
-### Features
-All features of [7-Zip-JBinding](http://sevenzipjbind.sourceforge.net/) supported:
-- Very fast extraction of many archive formats out of Java
-- Compress 7z, Zip, Tar, GZip, BZip2
-- Extract password protected archives
-- Extract splitted into volumes archives
-- Extract multiple archives multithreaded
-- 8599 JUnit tests
-- Cross-platform
+ ### امکانات
+ همه ویژگی های [7-Zip-JBinding] (http://sevenzipjbind.sourceforge.net/) پشتیبانی می شود:
+ - استخراج بسیار سریع بسیاری از فرمت های آرشیو از جاوا
+ - فشرده سازی 7z، Zip، Tar، GZip، BZip2
+ - استخراج آرشیوهای محافظت شده با رمز عبور
+ - عصاره به آرشیو مجلد تقسیم شده است
+ - استخراج آرشیوهای متعدد به صورت چند رشته ای
+ - 8599 تست JUnit
+ - کراس پلتفرم
 
-## Authors
-7-Zip was created by Igor Pavlov ([7-Zip Web Site](https://www.7-zip.org/links.html)), with 7-Zip-JBinding initially designed and implemented by Boris Brodski ([7-Zip-JBinding Web Site](http://sevenzipjbind.sourceforge.net/)). 7-Zip-JBinding was adapted for Android by Fredrik Claesson.
+ ## نویسندگان
+ 7-Zip توسط ایگور پاولوف ([7-Zip Web Site](https://www.7-zip.org/links.html)) ایجاد شد، با 7-Zip-JBinding که در ابتدا توسط بوریس برادسکی طراحی و اجرا شد ([  7-Zip-JBinding وب سایت](http://sevenzipjbind.sourceforge.net/)).  7-Zip-JBinding توسط فردریک کلاسون برای اندروید اقتباس شده است.
 
-## Usage
-7-Zip-JBinding-4Android is currently not available on JCenter due to package name conflict with the 7-Zip-JBinding JAR library. However, it is possible to import the AAR library in Gradle from the JitPack repository.
-1. Add the JitPack repository to project level `build.gradle` file (example: `MyAndroidProject/build.gradle`)
-```
+ ## استفاده
+ 7-Zip-JBinding-4Android به دلیل تضاد نام بسته با کتابخانه 7-Zip-JBinding JAR در حال حاضر در JCenter در دسترس نیست.  با این حال، امکان وارد کردن کتابخانه AAR در Gradle از مخزن JitPack وجود دارد.
+ 1. مخزن JitPack را به فایل «build.gradle» سطح پروژه اضافه کنید (مثال: «MyAndroidProject/build.gradle»)
+ ```gradle
 allprojects {
     repositories {
         ...
@@ -31,7 +31,7 @@ allprojects {
 }
 ```
 2. Add dependency to application level `build.gradle` file (example: `MyAndroidProject/app/build.gradle`)
-```
+```gradle
 dependencies {
     implementation 'com.github.omicronapps:7-Zip-JBinding-4Android:Release-16.02-2.02'
 }
